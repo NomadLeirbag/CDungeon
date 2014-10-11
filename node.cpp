@@ -6,7 +6,15 @@ using namespace std;
 
 Node::Node(string _name) {
 	name = _name;
+	numChildren = 0;
+	children = NULL;
 	hasChildren = false;
+}
+Node::Node(string _name, Node* _child) {
+	name = _name;
+	numChildren = 1;
+	children = _child;
+	hasChildren = true;
 }
 Node::Node(string _name, int _numChildren, Node* _children) {
 	name = _name;

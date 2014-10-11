@@ -2,6 +2,8 @@
 
 #include <sys/stat.h>
 #include <unistd.h>
+#include <iostream>
+#include <fstream>
 
 #include "node.hpp"
 
@@ -15,6 +17,10 @@ void process(Node* current) {
 		for(int i = 0; i < current->getNumChildren(); i++) {
 			process(&(children[i]));
 		}
+	}
+	else {
+		ofstream end("The End.");
+	  end << "This is not the easter egg you are looking for..." << endl;
 	}
 	chdir("..");
 }
