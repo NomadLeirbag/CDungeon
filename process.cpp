@@ -10,9 +10,12 @@
 using namespace std;
 
 void process(Node* current) {
-	mkdir(current->getName().c_str(), 0700);
-	chdir(current->getName().c_str());
-	if(current->containsChildren()) {
+	string* phrases = current->getPhrases();
+	for(int i = 0; i < current->getNumPhrases(); i++) {
+		mkdir(phrases[i].c_str(), 0700);
+		chdir(phrases[i].c_str());
+	}
+	if(current->getNumChildren() > 0) {
 		Node* children = current->getChildren();
 		for(int i = 0; i < current->getNumChildren(); i++) {
 			process(&(children[i]));
@@ -22,5 +25,7 @@ void process(Node* current) {
 		ofstream end("The End.");
 	  end << "This is not the easter egg you are looking for..." << endl;
 	}
-	chdir("..");
+	for(int i = 0; i < current->getNumPhrases(); i++) {
+		chdir("..");
+	}
 }
